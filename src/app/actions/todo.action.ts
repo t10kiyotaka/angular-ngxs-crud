@@ -22,3 +22,9 @@ export class DeleteTodo {
   constructor(public id: number) { }
 
 }
+
+export class SetSelectedTodo {
+  static readonly type = '[Todo] Set';
+
+  constructor(public payload: Todo) { }
+}
