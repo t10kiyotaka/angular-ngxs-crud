@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {Todo} from '../models/Todo';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {SetSelectedTodo, UpdateTodo} from '../actions/todo.action';
+import {AddTodo, SetSelectedTodo, UpdateTodo} from '../actions/todo.action';
 
 @Component({
   selector: 'app-form',
@@ -50,9 +50,13 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.editTodo) {
+    if (this.editTodo) {
       this.store.dispatch(new UpdateTodo(this.todoForm.value, this.todoForm.value.id)).subscribe(() =>{
         this.createForm();
+      });
+    } else {
+      this.store.dispatch(new AddTodo(this.todoForm.value)).subscribe(() => {
+        this.clearForm();
       });
     }
   }
