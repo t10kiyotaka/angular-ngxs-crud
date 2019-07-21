@@ -21,6 +21,11 @@ export class TodoState {
   constructor(private todoService: TodoService) { }
 
   @Selector()
+  static getTodoList(state: TodoStateModel) {
+    return state.todos;
+  }
+
+  @Selector()
   static getSelectedTodo(state: TodoStateModel) {
     return state.selectedTodo;
   }
